@@ -10,7 +10,7 @@
 <header class="site-header">
 <nav class="site-menu">
 <div class="search-box"><?php get_search_form(); ?></div>
-<label class="toggle" for="toggle"><span class="menu-icon">&#9776;</span></label>
+<label class="toggle" for="toggle"><span class="menu-icon">&#8801;</span></label>
 <input id="toggle" class="toggle" type="checkbox" />
 <?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
 </nav>
@@ -23,4 +23,9 @@
 	</div>
 <div class="site-description"><?php bloginfo( 'description' ); ?></div>
 </div>
+<?php
+wp_nav_menu( array( 
+    'theme_location' => 'button-menu', 
+    'container_class' => 'button-menu-item' ) ); 
+?>
 <?php endif; ?>

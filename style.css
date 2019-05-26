@@ -100,7 +100,8 @@ video {
 }
 
 html {
-	scroll-behavior: smooth
+	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 a {
@@ -238,13 +239,29 @@ section {
 	transition: all 0.5s ease
 }
 
+body:before {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+	background: url('/wp-content/uploads/2019/05/WinkelInterieurBlur.png') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
 	font-family: IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 16px;
 	color: #777;
-	word-wrap: break-word;
+	/*word-wrap: break-word;*/
 	line-height: 1;
-	background: url('/wp-content/uploads/2019/05/WinkelInterieurBlur.png') center/cover fixed
+	width: 100%;
 }
 
 h1,
@@ -299,13 +316,8 @@ p {
 	line-height: 145%
 }
 
-* p:last-of-type,
-.site-sidebar .widget-container:last-child {
-	margin-bottom: 0
-}
-
 a {
-	color: #09f
+	color: #00cc6f
 }
 
 strong {
@@ -407,7 +419,7 @@ audio,
 table,
 select,
 textarea {
-	max-width: 100% !important;
+	max-width: 100%;
 	height: auto
 }
 
@@ -418,13 +430,13 @@ table {
 
 .wrapper {
 	max-width: 100%;
-	margin: 0 auto
+	margin: 0 auto;
 }
 
 .site-header,
 .footer {
-	background-color: rgba(255,255,255,0.6);
-	color: black;
+	background-color: rgba(255,255,255,0.05);
+	color: white;
 	width: 100%;
 	padding: 1rem;
 	z-index: 2;
@@ -447,11 +459,11 @@ table {
 }
 
 .footer {
-	clear: both
+   clear: both;
 }
 
 .site-menu {
-	margin-top: 20px
+	top: 50%;
 }
 
 .site-menu ul {
@@ -473,11 +485,9 @@ table {
 .site-menu ul li a {
 	display: inline-block;
 	font-size: 18px;
-	color: #000;
+	color: #fff;
 	text-decoration: none;
 	line-height: 33px;
-	padding-bottom: 10px;
-	margin-top: -1px;
 	margin-right: 25px
 }
 
@@ -488,14 +498,14 @@ table {
 
 .site-menu ul li.menu-item-has-children>a:after,
 .site-menu ul li.page_item_has_children>a:after {
-	font-family: serif;
 	content: ' ▾'
 }
+
+
 
 .site-menu ul li ul {
 	display: none;
 	position: absolute;
-	top: 20px;
 	left: 0;
 	z-index: 1000
 }
@@ -533,7 +543,8 @@ table {
 }
 
 .site-menu .menu-icon {
-	font-size: 60px
+	font-size: 60px;
+	line-height: 0.5;
 }
 
 .search-box {
@@ -545,11 +556,31 @@ table {
 	height: 36px;
 	padding: 10px;
 	margin-top: 0;
-	background-color: #fff
+	background-color: #fff;
+	border-radius: 10px;
 }
 
 .widget-container .search-field {
 	width: 100%
+}
+
+#menu-button-menu {
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+#menu-button-menu .menu-item {
+	display: inline-block;
+	margin: 0 auto 0.5rem;
+	padding: 1rem;
+	background-color: #00cc6f;
+	border-radius: 10px;
+	font-size: 1.2rem;
+}
+
+#menu-button-menu .menu-item a {
+	color: white;
+	text-decoration: none;
 }
 
 .error404 .entry-content .search-field,
@@ -570,7 +601,7 @@ table {
 
 .site-branding {
 	text-align: center;
-	margin: 10rem 0;
+	margin: 2rem 0;
 }
 
 .button,
@@ -584,7 +615,7 @@ input[type="submit"] {
 	text-decoration: none;
 	padding: 15px 25px;
 	border: 0;
-	background: #09f;
+	background: #00cc6f;
 	opacity: 1
 }
 
@@ -595,17 +626,22 @@ input[type="submit"]:hover {
 	opacity: 0.8
 }
 
+.excerpt-more {
+	white-space: nowrap;
+}
+
 .site-title {
-	font-size: 10rem;
+	font-size: 9vw;
 	font-weight: normal;
 	color: #fff;
 	text-decoration: none;
-	display: inline;
+	display: inline-block;
 }
 
 .site-description {
 	color: #fff;
-	font-size: 3rem;
+	font-size: 3vw;
+	display: inline-block;
 }
 
 h1.entry-title,
@@ -676,8 +712,7 @@ h3.widget-title{
 .comment-meta a,
 .comment-author,
 .comment-author a {
-	font-size: 14px;
-	color: #000
+	font-size: 1rem;
 }
 
 .sticky {
@@ -713,9 +748,16 @@ h3.widget-title{
 	width: min-content;
 }
 
+.wp-block-column:after {
+	content:"";
+	height:inherit;
+	font-size:0;
+}
+
 .wp-block-columns {
 	-ms-flex-wrap: nowrap;
 	    flex-wrap: nowrap;
+	height: 100%;
 }
 
 .cff-wrapper {
@@ -752,7 +794,13 @@ h3.widget-title{
 .wp-post-image {
 	display: block;
 	margin: auto auto 10px auto;
-	clear: both
+	max-width: 90vh;
+	width: 100%;
+}
+
+.size-post-thumbnail {
+	max-width: 90vh;
+	margin: 0;
 }
 
 .listing-item {
@@ -888,10 +936,15 @@ body.home .site-container {
 	background: 0 0;
 }
 
-.wp-block-column, .cff-wrapper {
+.wp-block-column, .cff-wrapper, .home-card {
 	background-color: rgba(255,255,255,0.9);
-	border-radius: 1%;
-	border: 3px solid #ddd;
+	border: 5px solid #ddd;
+	border-radius: 5px;
+}
+
+.home-card {
+	margin: 10px;
+	padding: 10px;
 }
 
 .box,
@@ -1000,8 +1053,42 @@ body.home .site-container {
 
 .flex__left_content {
 	-ms-flex-line-pack: center !important;
-	    align-content: center !important;
 }
+	.wp-block-columns {
+		flex-direction: column !important;
+		align-items: center;
+	}
+	
+	.site-container div {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	
+	.site-container {
+		margin: 3% !important;
+		padding: 1rem !important;
+	}
+	.wp-block-column, .wp-block-columns {
+		display: block !important;
+	}
+}
+
+@media screen\0 {
+	.wp-block-column, .wp-block-columns {
+		display: block !important;
+	}
+	.site-container div {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	
+	.site-container {
+		margin: 3% !important;
+		padding: 1rem !important;
+	}
+	.wp-post-image {
+		width: 30vh;
+	}
 }
 
 @media(max-width:768px) {
@@ -1139,14 +1226,17 @@ body.home .site-container {
 .flex__center_content {
 	-ms-flex-line-pack: center;
 	    align-content: center;
+		width: 100%;
 }
 
 .flex__right_content {
 	-ms-flex-line-pack: end;
 	    align-content: flex-end;
+		width: 100%;
 }
 
 .flex__left_content {
 	-ms-flex-line-pack: start;
 	    align-content: flex-start;
+		width: 100%;
 }
